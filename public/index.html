@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="warning-overlay justify-center align-vertically" id="popup">
+        <div class="popup-box">
+            <div id="popup-message" class="space-bottom">
+            </div>
+            <div class="flex justify-center">
+                <button onclick="closePopup()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="sub-bg">
+        <div id="add-client" class="popup-box sub-interface">
+            <h2 class="space-bottom">Add client</h2>
+            <div class="flex justify-center  space-bottom">
+                <input id="add-client-name" class="width-100" placeholder="Client Name">
+            </div>
+            
+            <div class="flex justify-center space-bottom">
+                <input id="add-client-email" class="width-100" placeholder="Client Contact Email">
+            </div>
+            
+            <div class="flex justify-center space-bottom">
+                <input id="add-client-phone" class="width-100" placeholder="Client Phone">
+            </div>
+
+            <div class="flex justify-center gap-10">
+                <button onclick="addClient()">Submit</button>
+                <button onclick="closeSubInterface()">Cancel</button>
+            </div>
+        </div>
+
+        <div id="edit-client" class="popup-box sub-interface">
+            <h2 class="space-bottom">Edit client information</h2>
+            <div class="flex justify-center  space-bottom">
+                <input id="edit-client-name" class="width-100" placeholder="Client Name">
+            </div>
+            
+            <div class="flex justify-center space-bottom">
+                <input id="edit-client-email" class="width-100" placeholder="Client Contact Email">
+            </div>
+            
+            <div class="flex justify-center space-bottom">
+                <input id="edit-client-phone" class="width-100" placeholder="Client Phone">
+            </div>
+
+            <div class="flex justify-center gap-10">
+                <button onclick="editClient()">Update</button>
+                <button onclick="closeSubInterface()">Cancel</button>
+            </div>
+        </div>
+
+        <datalist id="client-names">
+        </datalist>
+
+        <div id="add-container" class="popup-box sub-interface">
+            <h2 class="space-bottom">Add new container</h2>
+            <div class="flex justify-center  space-bottom">
+                <input id="container-client-name" list="client-names" class="width-100" placeholder="Client Name">
+            </div>
+
+            <div class="block">
+                <div class="space-bottom flex justify-space-between gap-10 align-vertically">
+                    <div>
+                        <label for="add-container-phase">Section</label>
+                        <input type="number" id="add-container-phase" name="phase" min="1" max="255" placeholder="Section">
+                    </div>
+                    
+                    <div>
+                        <label for="add-container-aisle">Aisle</label>
+                        <input type="number" id="add-container-aisle" name="aisle" min="1" max="255" placeholder="Aisle">
+                    </div>
+
+                    <div>
+                        <label for="add-container-column">Column</label>
+                    <input type="number" id="add-container-column" name="column" min="1" max="999" placeholder="Column">
+                    </div>
+
+                    <div>
+                        <label for="add-container-level">Level</label>
+                        <input type="number" id="add-container-level" name="level" min="1" max="10" placeholder="Level">
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div>
+                <textarea placeholder="Container contents" class="space-bottom" id="add-container-catalog"></textarea>
+            </div>
+
+            <div class="flex justify-center gap-10">
+                <button onclick="addContainer()">Add</button>
+                <button onclick="closeSubInterface()">Cancel</button>
+            </div>
+        </div>
+
+        <div id="edit-container" class="popup-box sub-interface">
+            <h2 class="space-bottom">Container Information</h2>
+            <div class="text-align-left block space-bottom">
+                <div id="edit-container-number"></div>
+                <div id="edit-container-name"></div>
+            </div>
+
+            <div class="block">
+                <div class="space-bottom flex justify-center gap-10 justify-space-between">
+                    <div>
+                        <label for="edit-container-phase">Section</label>
+                        <input type="number" id="edit-container-phase" name="phase" min="1" max="255" placeholder="Section">
+                    </div>
+                    
+                    <div>
+                        <label for="edit-container-aisle">Aisle</label>
+                        <input type="number" id="edit-container-aisle" name="aisle" min="1" max="255" placeholder="Aisle">
+                    </div>
+
+                    <div>
+                        <label for="edit-container-column">Column</label>
+                    <input type="number" id="edit-container-column" name="column" min="1" max="999" placeholder="Column">
+                    </div>
+
+                    <div>
+                        <label for="edit-container-level">Level</label>
+                        <input type="number" id="edit-container-level" name="level" min="1" max="10" placeholder="Level">
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div>
+                <textarea placeholder="Container contents" class="space-bottom" id="edit-container-catalog"></textarea>
+            </div>
+
+            <div class="flex justify-center gap-10">
+                <button onclick="editContainer()">Update</button>
+                <button onclick="closeSubInterface()">Close</button>
+            </div>
+        </div>
+
+        <div id="delete-client-confirmation" class="popup-box sub-interface">
+            <h2 class="space-bottom">Sure?</h2>
+            <div class="flex justify-center gap-10">
+                <button>Delete</button>
+                <button onclick="closeSubInterface()">Cancel</button>
+            </div>
+            
+        </div>
+
+        <div id="delete-container-confirmation" class="popup-box sub-interface">
+            <h2 class="space-bottom">Sure?</h2>
+            <div class="flex justify-center gap-10">
+                <button>Delete</button>
+                <button onclick="closeSubInterface()">Cancel</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="interface" id="login-interface">
+        <div class="popup-box">
+
+            <h2 class="space-bottom" id="login-message">Please log in to continue.</h2>
+            <h2 class="space-bottom red">This is a demo. Log in with as user "user" and password "password"</h2>
+            <div class="space-bottom flex justify-center">
+                <input class="width-80" type="text" id="username" maxlength="16" tabindex="1">
+            </div>
+            
+            <div class="space-bottom flex justify-center">
+                <input class="width-80" type="password" id="password" maxlength="50" tabindex="2">
+            </div>
+    
+            <div class="flex justify-center">
+                <button tabindex="3" id="login" onclick="login()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="interface" id="client-search">
+
+        <div class="wrapper navbar">
+            <ul class="flex gap-20">
+                <li>
+                    <a href="javascript:logOut()">
+                        Log Out
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:showInterface('container-search')">
+                        Containers
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:showInterface('client-search')" class="underline">
+                        Clients
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="wrapper">
+            <div class="search">
+                <div class="flex align-vertically">
+                    <input class="width-100" id="search-clients" type="text" placeholder="Filter clients by name...">
+                </div>
+                
+                <div class="flex align-vertically justify-space-between">
+                    <button id="search-clients-button" class="search-button" onclick="searchClients()">Search</button>
+                    <button id="add-client-button" onclick="showSubInterface('add-client')">Add</button>
+                </div>
+            </div>
+
+            <div class="search-properties" style="grid-template-columns: 2fr 2fr 2fr 1fr">
+                <div>Name</div> <div>Email</div> <div>Phone</div> <div>Operations</div>
+            </div>
+
+            <div class="search-results" id="client-search-results">
+            </div>
+
+            <div class="flex justify-space-between" id="navigation-buttons">
+                <div>
+                    <button class="grid-navigation-button previous" id="clients-previous-button" onclick="showPreviousClientPage()">Previous</button>
+                </div>
+                <div>
+                    <button class="grid-navigation-button next" id="clients-next-button" onclick="showNextClientPage()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interface" id="container-search">
+        <div class="wrapper navbar">
+            <ul class="flex gap-20">
+                <li>
+                    <a href="javascript:logOut()">
+                        Log Out
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:showInterface('container-search')" class="underline">
+                        Containers
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:showInterface('client-search')">
+                        Clients
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="wrapper">
+            <div class="search">
+                <div class="flex align-vertically gap-10">
+                    <input class="width-100" id="search-containers-number" type="number" placeholder="Filter containers by number...">
+                    <input class="width-100" id="search-containers-catalog" type="text" placeholder="Filter containers by catalog...">
+                    <input class="width-100" id="search-containers-client" type="text" placeholder="Filter containers by client...">
+                </div>
+                
+                <div class="flex align-vertically justify-space-between">
+                    <button id="search-containers-button" class="search-button" onclick="searchContainers()">Search</button>
+                    <button id="add-container-button" onclick="showSubInterface('add-container')">Add</button>
+                </div>
+            </div>
+
+            <div class="search-properties" style="grid-template-columns: 2fr 2fr 2fr 1fr">
+                <div>Container No.</div> <div>Client</div> <div>Location</div> <div>Operations</div>
+            </div>
+
+            <div class="search-results" id="container-search-results">
+            </div>
+
+            <div class="flex justify-space-between" id="navigation-buttons">
+                <div>
+                    <button class="grid-navigation-button previous" id="clients-previous-button" onclick="showPreviousContainerPage()">Previous</button>
+                </div>
+                <div>
+                    <button class="grid-navigation-button next" id="clients-next-button" onclick="showNextContainerPage()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script src="searchcontainers.js"></script>
+<script src="searchclients.js"></script>
+<script src="interfaces.js"></script>
+<script src="login.js"></script>
+
+</html>
