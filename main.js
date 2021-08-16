@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 8081;
+const port = process.env.PORT;
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
