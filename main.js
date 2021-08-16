@@ -460,8 +460,6 @@ function createUser(username, password, firstname, lastname, usergroup){
     });
 }
 
-createUser("test", "password", "Test", "User", 0)
-
 
 function generateAccessToken(user){
     const token = {
