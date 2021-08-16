@@ -125,6 +125,7 @@ const silentSignIn = setInterval(()=>{
                         accessToken = response.responseJSON.accessToken;
                     }else{
                         showInterface("login-interface");
+                        refreshToken = "";
                     }
                 }
             });

@@ -243,7 +243,7 @@ app.post("/editContainer", authenticateToken, (req, res)=>{
         return;
     }
 
-    if (usergroups.groups[req.user.usergroup].canDeleteClient != true){
+    if (usergroups.groups[req.user.usergroup].canEditContainer != true){
         res.sendStatus(401);
         return;
     }

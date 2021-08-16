@@ -4,12 +4,16 @@ const ADMIN = 1;
 const groups = [];
 
 //PERMISSIONS
-// canAddClient - A user's ability to add a client to the system.
-// canEditClient - A user's ability to edit a client already in the system.
+// canAddClient: true/false
+// canEditClient: true/false
+// canDeleteClient: true/false
+// canAddContainer: true/false
+// canEditContainer: true/false
+// canDeleteContainer: true/false
 
 // Implicitly deny users all access beyond reading
 groups[USER] = {
-
+    // There are no permissions for a standard user, add properties here.
 }
 
 groups[ADMIN] = {
@@ -17,7 +21,8 @@ groups[ADMIN] = {
     canEditClient: true,
     canDeleteClient: true,
     canAddContainer: true,
-    canDeleteContainer: true
+    canEditContainer: true,
+    canDeleteContainer: true,
 }
 
 groups[USER] = {
