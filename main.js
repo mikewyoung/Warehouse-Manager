@@ -6,10 +6,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const usergroups = require("./usergroups.js");
 
-
-// For .env debugging.
-require("dotenv").config();
-
 const pool = mysql.createPool({
     connectionLimit: 3,
     host: process.env.MYSQL_HOST,
