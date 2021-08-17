@@ -369,6 +369,7 @@ app.post("/login", (req, res)=>{
     pool.query("SELECT * FROM users WHERE username = ?", [username], (err, result)=>{
         if (err){
             res.sendStatus(503);
+            console.log(err);
             return;
         }
 
