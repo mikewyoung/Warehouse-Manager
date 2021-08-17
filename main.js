@@ -38,6 +38,7 @@ app.post("/token", (req, res) =>{
 
     pool.query("SELECT * FROM tokens WHERE token = ?", [refreshToken], (err, result)=>{
         if (err){
+            console.log(err);
             res.sendStatus(503);
             return;
         }
