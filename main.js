@@ -19,6 +19,8 @@ const pool = mysql.createPool({
     password: process.env.MYSQL_PASS
 })
 
+console.log(MYSQL_HOST, MYSQL_PORT, MYSQL_DB, MYSQL_USER, MYSQL_PASS);
+
 
 pool.query("CREATE TABLE IF NOT EXISTS users(username VARCHAR(16) PRIMARY KEY, password CHAR(60), firstname VARCHAR(25), lastname VARCHAR(25), usergroup TINYINT UNSIGNED)");
 pool.query("CREATE TABLE IF NOT EXISTS tokens(username VARCHAR(16) PRIMARY KEY, token VARCHAR(200))")
